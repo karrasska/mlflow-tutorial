@@ -43,28 +43,25 @@ Save your screenshots in an `evidence` folder in your repository or show to us d
 ### 🟡 Task 2: Automated Model Registry (10 points)
 **Goal:** Learn how to query your experiment logs programmatically and register the best model without touching the UI.
 
-In a real MLOps pipeline, nobody clicks buttons to deploy models. Everything must be automated through code!
-1. Open the `task2_register.py` file.
+1. Open the `task2.py` file.
 2. Use `mlflow.search_runs()` to retrieve a pandas DataFrame of all runs in your experiment.
 3. Sort the DataFrame to find the run with the highest `metrics.training_accuracy_score`.
 4. Extract the `run_id` of the best model.
 5. Construct the model URI (format: `runs:/<run_id>/model`) and register it using `mlflow.register_model()` with the name `"DiabetesPredictor"`.
-6. Run your script: `python task2_register.py`.
+6. Run your script: `python task2.py`.
 * **Proof of completion:** Take a screenshot of the **"Models"** tab in the MLflow UI (`http://localhost:5000`) showing your successfully registered `DiabetesPredictor` model. Save it as `task2.png`.
 
 ### 🔴 Task 3: Model Serving & REST API Client (15 points)
 **Goal:** Deploy your registered model as a live microservice and write a Python client to query it.
-
-This is where Data Science meets Software Engineering. You will host your model on a local server and interact with it via HTTP requests.
 
 1. **Start the MLflow Server:** Open a **NEW** terminal window. 
 2. **IMPORTANT:** You must activate your virtual environment in this new terminal first!.
 3. Run the following command to serve your registered `DiabetesPredictor` model on port 5001:
    `mlflow models serve -m "models:/DiabetesPredictor/1" -p 5001 --env-manager local`
    *(Wait until the terminal says: `Listening at: http://127.0.0.1:5001`)*
-4. Open the `task3_client.py` file.
+4. Open the `task3.py` file.
 5. Construct the correct JSON payload. MLflow expects pandas DataFrames to be sent in the `dataframe_split` format.
 6. Send a `POST` request to the server's `/invocations` endpoint.
 7. Extract and print the prediction from the server's response.
-8. Open one more terminal tab, activate the environment, and run your script: `python task3_client.py`.
+8. Open one more terminal tab, activate the environment, and run your script: `python task3.py`.
 * **Proof of completion:** Take a screenshot of your terminal showing the successfully parsed prediction from the API (e.g., `The patient is classified as: POSITIVE (1) for Diabetes.`). Save it as `task3.png`.
