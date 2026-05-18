@@ -55,7 +55,7 @@ Save your screenshots in an `evidence` folder in your repository or show to us d
 **Goal:** Deploy your registered model as a live microservice and write a Python client to query it.
 
 1. **Start the MLflow Server:** Open a **NEW** terminal window. 
-2. **IMPORTANT:** You must activate your virtual environment in this new terminal first!.
+2. **IMPORTANT:** You must activate your virtual environment in this new terminal first!
 3. Run the following command to serve your registered `DiabetesPredictor` model on port 5001:
    `mlflow models serve -m "models:/DiabetesPredictor/1" -p 5001 --env-manager local`
    *(Wait until the terminal says: `Listening at: http://127.0.0.1:5001`)*
@@ -65,3 +65,15 @@ Save your screenshots in an `evidence` folder in your repository or show to us d
 7. Extract and print the prediction from the server's response.
 8. Open one more terminal tab, activate the environment, and run your script: `python task3.py`.
 * **Proof of completion:** Take a screenshot of your terminal showing the successfully parsed prediction from the API (e.g., `The patient is classified as: POSITIVE (1) for Diabetes.`). Save it as `task3.png`.
+
+---
+
+### 🟣 Task 4: Model Promotion & Aliases (15 points)
+**Goal:** Use the `MlflowClient` to programmatically document a specific model version and assign a deployment alias (like "champion"), making it easy for production systems to fetch the right version.
+
+1. Create and open a new file named `task4.py`.
+2. Copy the template code provided below into the file.
+3. Complete the `TODO` sections to instantiate the client, update the specific model version's description, and set the alias.
+4. Open your terminal, activate your environment, and run the script: `python task4.py`.
+5. **Go to the MLflow UI** (`http://localhost:5000`), click on the **"Models"** tab, click `DiabetesPredictor`, and then click on **Version 1**.
+* **Proof of completion:** Take a screenshot of the `DiabetesPredictor` Version 1 page showing your new description and the `@champion` alias. Save it as `task4.png`.
